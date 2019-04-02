@@ -1,5 +1,8 @@
 These files were written using VS code and tested by launching the index.html file using then"Go Live" feature in VS code.
 
+The index.html page can also be viewed by clicking on the link:
+<https://monicadelatorre.github.io/homework17/>
+
 # Unit 17 | Assignment - Visualizing Data with Leaflet
 
 ## Background

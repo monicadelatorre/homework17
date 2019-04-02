@@ -1,3 +1,4 @@
+//The url below will find the measured earthquakes in the past day from the USGS website.
 // Store our API endpoint inside queryUrl
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
 
@@ -11,6 +12,7 @@ function createFeatures(earthquakeData) {
 
   // Define a function we want to run once for each feature in the features array
   // Give each feature a popup describing the place and time of the earthquake
+  //The function below pull the place, time and magnitude information into a pop up for each location
   function onEachFeature(feature, layer) {
     layer.bindPopup("<h3>" + feature.properties.place +
       "</h3><hr><p>" + new Date(feature.properties.time) + 
@@ -19,18 +21,19 @@ function createFeatures(earthquakeData) {
 
   // Create a GeoJSON layer containing the features array on the earthquakeData object
   // Run the onEachFeature function once for each piece of data in the array
+  //The pointToLayer feature below takes in latlng function and returns a marker. In this problem we are creating a circle of varying opacitcy.
   var earthquakes = L.geoJSON(earthquakeData, {
     onEachFeature: onEachFeature,
     pointToLayer: function (feature, latlng) {
       
       var geojsonMarkerOptions = {
+        //radius changing here based on the magnitude values
         radius: 5*feature.properties.mag,
-        // fillColor: 255+feature.properties.mag,
         fillColor: "blue",
         color: "black",
         weight: .5,
         opacity: 1,
-        // fillOpacity: .5
+        // fillOpacity changing here based on the magnitude values
         fillOpacity:.1*feature.properties.mag
       };
       return L.circleMarker(latlng, geojsonMarkerOptions);
